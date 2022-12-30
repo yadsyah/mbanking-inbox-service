@@ -1,13 +1,7 @@
 package id.co.diansetiyadi.inboxservice.service.impl;
 
-import id.co.diansetiyadi.inboxservice.dto.request.AddInboxRequest;
-import id.co.diansetiyadi.inboxservice.dto.request.DeleteInboxRequest;
-import id.co.diansetiyadi.inboxservice.dto.request.InquiryInboxRequest;
-import id.co.diansetiyadi.inboxservice.dto.request.ReadFlagInboxRequest;
-import id.co.diansetiyadi.inboxservice.dto.response.AddInboxResponse;
-import id.co.diansetiyadi.inboxservice.dto.response.DeleteInboxResponse;
-import id.co.diansetiyadi.inboxservice.dto.response.InquiryInboxResponse;
-import id.co.diansetiyadi.inboxservice.dto.response.ReadFlagInboxResponse;
+import id.co.diansetiyadi.inboxservice.dto.request.*;
+import id.co.diansetiyadi.inboxservice.dto.response.*;
 import id.co.diansetiyadi.inboxservice.entity.InboxEntity;
 import id.co.diansetiyadi.inboxservice.handlings.InboxNotFoundException;
 import id.co.diansetiyadi.inboxservice.repository.InboxRepository;
@@ -62,6 +56,7 @@ public class InboxServiceImpl implements InboxService {
         InboxEntity checkExistInbox = inboxRepository.findById(readFlagInboxRequest.getIdInbox()).orElseThrow(() -> new InboxNotFoundException("inbox not found!"));
 
         checkExistInbox.setRead(true);
+        inboxRepository.save(checkExistInbox);
         return ReadFlagInboxResponse.builder().idInbox(checkExistInbox.getId()).build();
     }
 
@@ -75,5 +70,11 @@ public class InboxServiceImpl implements InboxService {
 
         List<InboxEntity> inboxEntityList = inboxRepository.findByCifAndDeletedIsFalseAndLastModifiedDateBetween(inquiryInboxRequest.getCif(), startDateParse, endDateParse);
         return InquiryInboxResponse.builder().listInbox(inboxEntityList).build();
+    }
+
+    @Override
+    public CountInboxResponse countInbox(CountInboxRequest countInboxRequest) {
+        Long totalCountInbox = inboxRepository.countByCif(countInboxRequest.getCif());
+        return CountInboxResponse.builder().totalCount(totalCountInbox.toString()).build();
     }
 }

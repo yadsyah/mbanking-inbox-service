@@ -1,9 +1,6 @@
 package id.co.diansetiyadi.inboxservice.controller;
 
-import id.co.diansetiyadi.inboxservice.dto.request.AddInboxRequest;
-import id.co.diansetiyadi.inboxservice.dto.request.DeleteInboxRequest;
-import id.co.diansetiyadi.inboxservice.dto.request.InquiryInboxRequest;
-import id.co.diansetiyadi.inboxservice.dto.request.ReadFlagInboxRequest;
+import id.co.diansetiyadi.inboxservice.dto.request.*;
 import id.co.diansetiyadi.inboxservice.dto.response.BaseResponse;
 import id.co.diansetiyadi.inboxservice.service.InboxService;
 import jakarta.validation.Valid;
@@ -70,6 +67,17 @@ public class InboxController {
                 .message("Success")
                 .traceId(UUID.randomUUID().toString())
                 .data(inboxService.deleteInbox(deleteInboxRequest))
+                .build());
+    }
+
+    @PostMapping("/count")
+    @ResponseBody
+    public Mono<BaseResponse> totalCountInbox(@RequestBody @Valid CountInboxRequest countInboxRequest) {
+        return Mono.just(BaseResponse.builder()
+                        .responseCode("00")
+                        .message("Success")
+                        .traceId(UUID.randomUUID().toString())
+                        .data(inboxService.countInbox(countInboxRequest))
                 .build());
     }
 }

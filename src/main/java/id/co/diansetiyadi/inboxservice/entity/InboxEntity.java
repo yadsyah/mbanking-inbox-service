@@ -10,7 +10,7 @@ import lombok.Setter;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
-@Document(collation = "inbox")
+@Document(collection = "inbox")
 @Setter
 @Getter
 @NoArgsConstructor
