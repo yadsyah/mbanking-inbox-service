@@ -47,7 +47,7 @@ public class InboxServiceImpl implements InboxService {
 
         checkExistInbox.setDeleted(true);
         checkExistInbox.setActive(false);
-
+        inboxRepository.save(checkExistInbox);
         return DeleteInboxResponse.builder().idInbox(checkExistInbox.getId()).build();
     }
 
