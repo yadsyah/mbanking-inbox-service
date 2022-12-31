@@ -6,14 +6,14 @@ WORKDIR /build-apps
 
 COPY . /build-apps/
 
-RUN mvn verify -Dmaven.test.skip
+RUN mvn verify -Dmaven.test.skip -q
 
-RUN mvn clean install -Dmaven.test.skip
+RUN mvn clean install -Dmaven.test.skip -q
 
 FROM openjdk:17-alpine as RUN-APPS
 USER root
 WORKDIR /apps
-COPY --from=BUILD-APPS /build-apps/app/target/*.jar /apps/apps.jar
+COPY --from=BUILD-APPS /build-apps/target/*.jar /apps/apps.jar
 # COPY app/target/app.jar /apps
 RUN ls -ltr
-ENTRYPOINT [ "java","-jar","app.jar"]
+ENTRYPOINT [ "java","-jar","apps.jar"]
