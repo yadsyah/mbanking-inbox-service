@@ -25,6 +25,7 @@ public class InboxConsumer {
     @KafkaListener(topics = InboxConstant.TOPIC_NOTIFICATION_INBOX, groupId = "notification_inbox")
     public void consumeMessageInbox(String message) {
         log.info("Consume Kafka : {}", message);
+        log.info("Add Inbox with message : {}", message);
         AddInboxRequest addInboxRequest = gson.fromJson(message, AddInboxRequest.class);
         inboxService.addInbox(addInboxRequest);
     }

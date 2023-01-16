@@ -16,7 +16,6 @@ import reactor.core.publisher.Mono;
 import java.util.UUID;
 
 @RestController
-@Slf4j
 public class InboxController {
 
     private final InboxService inboxService;

@@ -8,6 +8,5 @@ public interface InboxService {
     DeleteInboxResponse deleteInbox(DeleteInboxRequest deleteInboxRequest);
     ReadFlagInboxResponse readByFlag(ReadFlagInboxRequest readFlagInboxRequest);
     InquiryInboxResponse inquiryInbox(InquiryInboxRequest inquiryInboxRequest);
-
     CountInboxResponse countInbox(CountInboxRequest countInboxRequest);
 }

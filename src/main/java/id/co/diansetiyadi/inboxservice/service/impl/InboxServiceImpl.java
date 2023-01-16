@@ -16,7 +16,6 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-@Slf4j
 public class InboxServiceImpl implements InboxService {
 
     private final InboxRepository inboxRepository;
