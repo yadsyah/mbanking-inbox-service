@@ -7,7 +7,6 @@ import id.co.diansetiyadi.inboxservice.handlings.InboxNotFoundException;
 import id.co.diansetiyadi.inboxservice.repository.InboxRepository;
 import id.co.diansetiyadi.inboxservice.service.InboxService;
 import lombok.SneakyThrows;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
